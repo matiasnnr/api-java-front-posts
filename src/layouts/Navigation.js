@@ -1,8 +1,14 @@
 import React from 'react'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../actions/authActions';
 
 export default function Navigation() {
+
+    const { loggedIn, user } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Navbar.Brand as={NavLink} to="/">
@@ -11,15 +17,28 @@ export default function Navigation() {
             <Navbar.Toggle aria-controls="main-menu"></Navbar.Toggle>
             <Navbar.Collapse id="main-menu">
                 <Nav className="mr-auto">
-                    <Nav.Link>Create Post</Nav.Link>
+                    {loggedIn && <Nav.Link>Crear Post</Nav.Link>}
                 </Nav>
                 <Nav>
-                    <Nav.Link as={NavLink} to="/">Create Post</Nav.Link>
-                    <Nav.Link as={NavLink} to="/signin">Iniciar sesión</Nav.Link>
-                    <NavDropdown title="Matías Núñez" id="menu-dropdown">
-                        <NavDropdown.Item>Posts</NavDropdown.Item>
-                        <NavDropdown.Item>Cerrar sesión</NavDropdown.Item>
-                    </NavDropdown>
+                    {
+                        !loggedIn
+                            ? (
+                                <>
+                                    <Nav.Link as={NavLink} to="/">Crear cuenta</Nav.Link>
+                                    <Nav.Link as={NavLink} to="/signin">Iniciar sesión</Nav.Link>
+                                </>
+                            )
+                            :
+                            (
+                                <>
+                                    <NavDropdown title={user.sub} id="menu-dropdown">
+                                        <NavDropdown.Item>Posts</NavDropdown.Item>
+                                        <NavDropdown.Item onClick={() => dispatch(logoutUser())} >Cerrar sesión</NavDropdown.Item>
+                                    </NavDropdown>
+                                </>
+                            )
+                    }
+
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

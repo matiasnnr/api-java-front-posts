@@ -40,7 +40,7 @@ export const setCurrentUser = ({ user, loggedIn }) => { // con esto el usuario d
     }
 };
 
-export const logoutUser = dispatch => {
+export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken"); // sacamos token del localStorage
 
     setAuthToken(false); // sacamos token del header de axios

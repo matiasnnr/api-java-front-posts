@@ -2,18 +2,23 @@ import React, { useState, useEffect } from 'react'
 import { Card, Container, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SignInForm from '../components/forms/SignInForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 import { isObjectEmpty } from '../helpers/helpers';
 import { loginUser } from '../actions/authActions';
+import { useHistory } from 'react-router-dom';
 
 export default function SignIn() {
 
     const [errors, setErrors] = useState({})
     const dispatch = useDispatch(); // nos permite llamar o lanzar acciones
+    const loggedIn = useSelector(state => state.auth.loggedIn);
+    const history = useHistory();
 
     useEffect(() => {
-
+        if (loggedIn) {
+            history.push("/");
+        }
     })
 
     // email y password vienen de onSubmitCallback que se les asigna valor en SignInForn
