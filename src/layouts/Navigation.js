@@ -24,7 +24,7 @@ export default function Navigation() {
                         !loggedIn
                             ? (
                                 <>
-                                    <Nav.Link as={NavLink} to="/">Crear cuenta</Nav.Link>
+                                    <Nav.Link as={NavLink} to="/signup">Crear cuenta</Nav.Link>
                                     <Nav.Link as={NavLink} to="/signin">Iniciar sesión</Nav.Link>
                                 </>
                             )

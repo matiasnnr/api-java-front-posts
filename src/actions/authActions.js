@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import { LOGIN_ENDPOINT } from '../helpers/endpoints';
+import { LOGIN_ENDPOINT, REGISTER_ENDPOINT } from '../helpers/endpoints';
 import { SET_CURRENT_USER } from './types';
 import setAuthToken from '../helpers/setAuthToken';
 
@@ -26,6 +26,21 @@ export const loginUser = (userData) => dispatch => {
 
             dispatch(setCurrentUser({ user: decoded, loggedIn: true }));
 
+            resolve(response);
+        }).catch(error => {
+            reject(error);
+        })
+    })
+}
+
+export const registerUser = (userData) => dispatch => {
+
+    console.log(userData);
+
+    return new Promise((resolve, reject) => {
+        axios.post(REGISTER_ENDPOINT, userData, {
+            headers: { 'Accept': 'application/json', 'Content-type': 'application/json' }
+        }).then(response => {
             resolve(response);
         }).catch(error => {
             reject(error);
