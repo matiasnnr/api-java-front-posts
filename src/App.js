@@ -10,6 +10,11 @@ import checkForToken from "./helpers/checkForToken";
 import PrivateRoute from "./utils/PrivateRoute";
 import UserPosts from "./pages/UserPosts";
 import SignUp from "./pages/SignUp";
+//moment configuracion español
+import moment from 'moment';
+import 'moment/locale/es';
+import PostDetails from "./pages/PostDetails";
+moment.locale('es');
 
 checkForToken();
 
@@ -27,6 +32,7 @@ function App() {
             <Route exact path="/" component={Posts}></Route>
             <Route exact path="/signin" component={SignIn}></Route>
             <Route exact path="/signup" component={SignUp}></Route>
+            <Route exact path="/post/:id" component={PostDetails}></Route>
             <PrivateRoute exact path="/posts" component={UserPosts} ></PrivateRoute>
           </Switch>
         </Container>

@@ -22,7 +22,7 @@ export default function SignUp() {
     })
 
     // email y password vienen de onSubmitCallback que se les asigna valor en SignInForn
-    const login = ({ email, password, firstName, lastName }) => {
+    const register = ({ email, password, firstName, lastName }) => {
         const errors = {};
         setErrors(errors)
 
@@ -47,7 +47,7 @@ export default function SignUp() {
             return;
         }
 
-        // llamar a nuestra función login que tenemos en authActions
+        // llamar a nuestra función register que tenemos en authActions
         dispatch(registerUser({ email, password, firstName, lastName })).then(response => {
             dispatch(loginUser({ email, password }));
         })
@@ -66,7 +66,7 @@ export default function SignUp() {
 
                         <h3>Crear cuenta</h3>
                         <hr />
-                        <SignUpForm errors={errors} onSubmitCallback={login} ></SignUpForm>
+                        <SignUpForm errors={errors} onSubmitCallback={register} ></SignUpForm>
                         <div className="mt-4">
                             <Link to="/signin" >
                                 ¿Ya tienes una cuenta? Inicia sesión aquí</Link>
