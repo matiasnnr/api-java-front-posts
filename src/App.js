@@ -10,10 +10,15 @@ import checkForToken from "./helpers/checkForToken";
 import PrivateRoute from "./utils/PrivateRoute";
 import UserPosts from "./pages/UserPosts";
 import SignUp from "./pages/SignUp";
+import PostDetails from "./pages/PostDetails";
+
+// config toast alerts
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 //moment configuracion español
 import moment from 'moment';
 import 'moment/locale/es';
-import PostDetails from "./pages/PostDetails";
 moment.locale('es');
 
 checkForToken();
@@ -28,6 +33,7 @@ function App() {
           </Navigation>
         </div>
         <Container>
+          <ToastContainer />
           <Switch>
             <Route exact path="/" component={Posts}></Route>
             <Route exact path="/signin" component={SignIn}></Route>
