@@ -32,7 +32,7 @@ export default function Navigation() {
                             (
                                 <>
                                     <NavDropdown title={user.sub} id="menu-dropdown">
-                                        <NavDropdown.Item as={NavLink} to="/posts" >Posts</NavDropdown.Item>
+                                        <NavDropdown.Item as={NavLink} to="/posts" >Mis Posts</NavDropdown.Item>
                                         <NavDropdown.Item onClick={() => dispatch(logoutUser())} >Cerrar sesión</NavDropdown.Item>
                                     </NavDropdown>
                                 </>

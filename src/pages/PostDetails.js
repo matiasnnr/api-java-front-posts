@@ -7,6 +7,7 @@ import moment from 'moment';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
+import { downloadTextAsFile } from '../helpers/helpers';
 
 export default function PostDetails() {
 
@@ -38,7 +39,7 @@ export default function PostDetails() {
                                 variant="primary"
                                 size="sm"
                                 onClick={() => {
-
+                                    downloadTextAsFile(post.postId, post.content);
                                 }}
                             >
                                 Descargar
@@ -48,7 +49,7 @@ export default function PostDetails() {
                                     toast.info("Copiado al portapapeles", {
                                         position: toast.POSITION.BOTTOM_CENTER,
                                         autoClose: 2000 // 2 segundos
-                                    })
+                                    });
                                 }}
                                 text={post.content}
                             >

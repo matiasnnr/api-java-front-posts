@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from "./layouts/Navigation";
-import Posts from "./pages/Posts";
+import PublicPosts from "./pages/PublicPosts";
 import SignIn from "./pages/SignIn";
 import store from './store';
 import { Provider } from 'react-redux';
@@ -35,7 +35,7 @@ function App() {
         <Container>
           <ToastContainer />
           <Switch>
-            <Route exact path="/" component={Posts}></Route>
+            <Route exact path="/" component={PublicPosts}></Route>
             <Route exact path="/signin" component={SignIn}></Route>
             <Route exact path="/signup" component={SignUp}></Route>
             <Route exact path="/post/:id" component={PostDetails}></Route>
