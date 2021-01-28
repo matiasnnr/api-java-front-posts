@@ -3,6 +3,7 @@ import axios from 'axios';
 import Post from '../components/post/Post';
 import { PUBLIC_POSTS_ENDPOINT } from '../helpers/endpoints';
 import { Jumbotron } from 'react-bootstrap';
+import Placeholder from '../components/utils/Placeholder';
 
 export default function PublicPosts() {
 
@@ -24,6 +25,7 @@ export default function PublicPosts() {
             <Jumbotron className="mt-4">
                 <h1>Últimos posts públicos</h1>
             </Jumbotron>
+            { fetching && <Placeholder />}
             <div>
                 {posts.map(post => <Post key={post.postId} post={post} renderControls={false}></Post>)}
             </div>
