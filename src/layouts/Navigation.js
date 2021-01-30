@@ -17,7 +17,7 @@ export default function Navigation() {
             <Navbar.Toggle aria-controls="main-menu"></Navbar.Toggle>
             <Navbar.Collapse id="main-menu">
                 <Nav className="mr-auto">
-                    {loggedIn && <Nav.Link>Crear Post</Nav.Link>}
+                    {loggedIn && <Nav.Link as={NavLink} to="/newpost">Crear Post</Nav.Link>}
                 </Nav>
                 <Nav>
                     {

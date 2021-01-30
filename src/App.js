@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 //moment configuracion español
 import moment from 'moment';
 import 'moment/locale/es';
+import NewPost from "./pages/NewPost";
 moment.locale('es');
 
 checkForToken();
@@ -40,6 +41,7 @@ function App() {
             <Route exact path="/signup" component={SignUp}></Route>
             <Route exact path="/post/:id" component={PostDetails}></Route>
             <PrivateRoute exact path="/posts" component={UserPosts} ></PrivateRoute>
+            <PrivateRoute exact path="/newpost" component={NewPost} ></PrivateRoute>
           </Switch>
         </Container>
       </Router>

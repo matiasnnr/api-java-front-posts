@@ -27,7 +27,7 @@ export default function PostDetails() {
         <div className="pb-4">
             {post && (
                 <>
-                    <Jumbotron>
+                    <Jumbotron className="mt-4">
                         <h1>{post.title}</h1>
                         <p>Creado por {post.user.firstName}, {moment(post.createdAt).fromNow()}</p>
                     </Jumbotron>
