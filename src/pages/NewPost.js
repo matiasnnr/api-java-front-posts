@@ -8,13 +8,16 @@ import { exposures } from '../helpers/exposures';
 import { CREATE_POST_ENDPOINT } from '../helpers/endpoints';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { getUserPost } from '../actions/postActions';
+import { useDispatch } from 'react-redux';
 
 export default function NEwPost() {
 
     const [errors, setErrors] = useState({})
     const history = useHistory();
+    const dispatch = useDispatch();
 
-    const createPost = ({ title, content, expirationTime, exposureId }) => {
+    const createPost = async ({ title, content, expirationTime, exposureId }) => {
         const errors = {};
         setErrors(errors)
 
@@ -33,21 +36,17 @@ export default function NEwPost() {
 
         expirationTime = exposureId == exposures.PRIVATE ? 0 : expirationTime;
 
-        axios.post(CREATE_POST_ENDPOINT, { title, content, expirationTime, exposureId })
-            .then(res => {
-                toast.info("El post se ha creado", {
-                    position: toast.POSITION.BOTTOM_CENTER,
-                    autoClose: 2000 // 2 segundos
-                });
-                history.push(`/post/${res.data.postId}`)
-            })
-            .catch(e => {
-                setErrors({
-                    newpost: e.response.data.message
-                })
-            })
-
-        console.log({ title, content, expirationTime, exposureId });
+        try {
+            const res = await axios.post(CREATE_POST_ENDPOINT, { title, content, expirationTime, exposureId });
+            await dispatch(getUserPost()); // obtiene los posts del usuario y actualiza la lista con el post nuevo en el state global de redux
+            toast.info("El post se ha creado", {
+                position: toast.POSITION.BOTTOM_CENTER,
+                autoClose: 2000 // 2 segundos
+            });
+            history.push(`/post/${res.data.postId}`)
+        } catch (e) {
+            setErrors({ newpost: e.response.data.message })
+        }
 
     }
 
