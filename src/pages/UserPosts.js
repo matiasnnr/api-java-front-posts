@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Post from '../components/post/Post';
-import { USER_POST_ENDPOINT } from '../helpers/endpoints';
 import { Jumbotron } from 'react-bootstrap';
 import Placeholder from '../components/utils/Placeholder';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserPost } from '../actions/postActions';
+import { toast } from 'react-toastify';
 
 export default function UserPosts() {
 
-    const [posts, setPosts] = useState([]);
-    const [fetching, setFetching] = useState(true);
+    const [fetching, setFetching] = useState(false);
+    const fetched = useSelector(state => state.posts.fetched);
+    const posts = useSelector(state => state.posts.posts);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get(USER_POST_ENDPOINT).then(res => {
-            setPosts(res.data);
-            setFetching(false);
-        }).catch(e => {
-            console.error(e);
-            setFetching(false);
-        })
+        const fetchedPosts = async () => {
+            if (!fetched) {
+                try {
+                    setFetching(true);
+                    await dispatch(getUserPost());
+                    setFetching(false);
+                } catch (error) {
+                    toast.error(error.response.data.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        autoClose: 2000
+                    })
+                }
+            }
+        }
+        fetchedPosts();
     }, []);
 
     return (
