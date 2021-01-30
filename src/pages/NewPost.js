@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { exposures } from '../helpers/exposures';
 import { CREATE_POST_ENDPOINT } from '../helpers/endpoints';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function NEwPost() {
 
@@ -34,6 +35,10 @@ export default function NEwPost() {
 
         axios.post(CREATE_POST_ENDPOINT, { title, content, expirationTime, exposureId })
             .then(res => {
+                toast.info("El post se ha creado", {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                    autoClose: 2000 // 2 segundos
+                });
                 history.push(`/post/${res.data.postId}`)
             })
             .catch(e => {
