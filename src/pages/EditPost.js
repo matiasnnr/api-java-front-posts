@@ -5,7 +5,7 @@ import validator from 'validator';
 import { isObjectEmpty } from '../helpers/helpers';
 import { useHistory, useParams } from 'react-router-dom';
 import { exposures } from '../helpers/exposures';
-import { CREATE_POST_ENDPOINT, POST_DETAILS_ENDPOINT } from '../helpers/endpoints';
+import { UPDATE_POST_ENDPOINT, POST_DETAILS_ENDPOINT } from '../helpers/endpoints';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getUserPost } from '../actions/postActions';
@@ -47,15 +47,15 @@ export default function EditPost() {
         expirationTime = exposureId == exposures.PRIVATE ? 0 : expirationTime;
 
         try {
-            const res = await axios.post(CREATE_POST_ENDPOINT, { title, content, expirationTime, exposureId });
+            const res = await axios.put(`${UPDATE_POST_ENDPOINT}/${post.postId}`, { title, content, expirationTime, exposureId });
             await dispatch(getUserPost()); // obtiene los posts del usuario y actualiza la lista con el post nuevo en el state global de redux
-            toast.info("El post se ha creado", {
+            toast.info("El post se ha modificado", {
                 position: toast.POSITION.BOTTOM_CENTER,
                 autoClose: 2000 // 2 segundos
             });
             history.push(`/post/${res.data.postId}`)
         } catch (e) {
-            setErrors({ newpost: e.response.data.message })
+            setErrors({ editpost: e.response.data.message })
         }
 
     }
@@ -66,7 +66,7 @@ export default function EditPost() {
                 <Col sm="12" lg={{ span: 10, offset: 1 }} >
                     <Card body>
 
-                        {errors.newpost && <Alert variant="danger">{errors.newpost}</Alert>}
+                        {errors.editpost && <Alert variant="danger">{errors.editpost}</Alert>}
 
                         <h3>Editar post</h3>
                         <hr />
@@ -78,8 +78,7 @@ export default function EditPost() {
                                 onSubmitCallback={editPost}
                                 postTitle={post.title}
                                 postContent={post.content}
-                                postExposureId={post.exposureId}
-                                postExpirationTime={post.expirationTime}
+                                postExposureId={post.exposure.id}
                                 textButton="Editar post"
                             />
                         }
