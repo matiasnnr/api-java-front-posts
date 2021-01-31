@@ -1,8 +1,9 @@
 import React from 'react'
 import { Badge, Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import moment from 'moment';
 import { exposures } from '../../helpers/exposures';
+import DeletePostButton from './buttons/DeletePostButton';
 
 export default function Post({ post, renderControls }) {
     return (
@@ -24,8 +25,8 @@ export default function Post({ post, renderControls }) {
                         }
                     </div>
                     <div>
-                        <Button variant="primary" size="sm" className="mr-2">Editar</Button>
-                        <Button variant="primary" size="sm">Eliminar</Button>
+                        <Button variant="primary" size="sm" className="mr-2" as={NavLink} to={`/editpost/${post.postId}`}>Editar</Button>
+                        <DeletePostButton title={post.title} postId={post.postId} />
                     </div>
                 </Card.Header>
             }

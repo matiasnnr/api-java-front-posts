@@ -12,6 +12,9 @@ import UserPosts from "./pages/UserPosts";
 import SignUp from "./pages/SignUp";
 import PostDetails from "./pages/PostDetails";
 
+// CSS de react confirm alerts
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 // config toast alerts
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -20,6 +23,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import moment from 'moment';
 import 'moment/locale/es';
 import NewPost from "./pages/NewPost";
+import EditPost from "./pages/EditPost";
 moment.locale('es');
 
 checkForToken();
@@ -42,6 +46,7 @@ function App() {
             <Route exact path="/post/:id" component={PostDetails}></Route>
             <PrivateRoute exact path="/posts" component={UserPosts} ></PrivateRoute>
             <PrivateRoute exact path="/newpost" component={NewPost} ></PrivateRoute>
+            <PrivateRoute exact path="/editpost/:id" component={EditPost} ></PrivateRoute>
           </Switch>
         </Container>
       </Router>

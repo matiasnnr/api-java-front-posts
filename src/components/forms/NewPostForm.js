@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { exposures } from '../../helpers/exposures';
 
-export default function NewPostForm({ errors, onSubmitCallback }) {
+export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", postContent = "", postExposureId = exposures.PUBLIC, postExpirationTime = 60, textButton = "Crear post" }) {
 
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
-    const [expirationTime, setExpirationTime] = useState(60);
-    const [exposureId, setExposureId] = useState(exposures.PRIVATE);
+    const [title, setTitle] = useState(postTitle);
+    const [content, setContent] = useState(postContent);
+    const [expirationTime, setExpirationTime] = useState(postExpirationTime);
+    const [exposureId, setExposureId] = useState(postExposureId);
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -103,7 +103,7 @@ export default function NewPostForm({ errors, onSubmitCallback }) {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Button variant="primary" type="submit" >Crear post</Button>
+            <Button variant="primary" type="submit" >{textButton}</Button>
         </Form>
     )
 }
