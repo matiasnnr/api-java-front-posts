@@ -34,7 +34,7 @@ export default function NEwPost() {
             return;
         }
 
-        expirationTime = exposureId == exposures.PRIVATE ? 0 : expirationTime;
+        expirationTime = parseInt(exposureId) === exposures.PRIVATE ? 0 : expirationTime;
 
         try {
             const res = await axios.post(CREATE_POST_ENDPOINT, { title, content, expirationTime, exposureId });

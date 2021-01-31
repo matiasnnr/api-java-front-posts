@@ -30,7 +30,7 @@ export default function UserPosts() {
             }
         }
         fetchedPosts();
-    }, []);
+    }, [dispatch, fetched]);
 
     return (
         <div>

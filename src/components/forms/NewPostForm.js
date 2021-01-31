@@ -35,7 +35,7 @@ export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", 
                     <Form.Group controlId="expirationTime" >
                         <Form.Label>Tiempo de expiración</Form.Label>
                         <Form.Control
-                            disabled={exposureId == exposures.PRIVATE}
+                            disabled={parseInt(exposureId) === exposures.PRIVATE}
                             as="select"
                             value={expirationTime}
                             onChange={e => setExpirationTime(e.target.value)}
@@ -46,7 +46,6 @@ export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", 
                             <option value="360">6 horas</option>
                             <option value="720">12 horas</option>
                             <option value="1440">1 día</option>
-                            <option value="43200">{`1 mes (30 días)`}</option>
                         </Form.Control>
                         <Form.Control.Feedback type="invalid">
                             {errors.expirationTime}
@@ -61,7 +60,7 @@ export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", 
                             <Form.Check
                                 value={exposures.PRIVATE}
                                 onChange={e => setExposureId(e.target.value)}
-                                checked={exposureId == exposures.PRIVATE}
+                                checked={parseInt(exposureId) === exposures.PRIVATE}
                                 inline
                                 label="Privado"
                                 name="exposureId"
@@ -73,7 +72,7 @@ export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", 
                             <Form.Check
                                 value={exposures.PUBLIC}
                                 onChange={e => setExposureId(e.target.value)}
-                                checked={exposureId == exposures.PUBLIC}
+                                checked={parseInt(exposureId) === exposures.PUBLIC}
                                 inline
                                 label="Público"
                                 name="exposureId"
