@@ -4,6 +4,7 @@ import Post from '../components/post/Post';
 import { PUBLIC_POSTS_ENDPOINT } from '../helpers/endpoints';
 import { Jumbotron } from 'react-bootstrap';
 import Placeholder from '../components/utils/Placeholder';
+import NoPost from '../components/utils/NoPost';
 
 export default function PublicPosts() {
 
@@ -26,6 +27,7 @@ export default function PublicPosts() {
                 <h1>Últimos posts públicos</h1>
             </Jumbotron>
             { fetching && <Placeholder />}
+            { !fetching && posts.length === 0 && <NoPost noPostText="No hay posts públicos disponibles" />}
             <div>
                 {posts.map(post => <Post key={post.postId} post={post} renderControls={false}></Post>)}
             </div>

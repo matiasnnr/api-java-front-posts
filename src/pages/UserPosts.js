@@ -5,6 +5,7 @@ import Placeholder from '../components/utils/Placeholder';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserPost } from '../actions/postActions';
 import { toast } from 'react-toastify';
+import NoPost from '../components/utils/NoPost';
 
 export default function UserPosts() {
 
@@ -37,6 +38,7 @@ export default function UserPosts() {
                 <h1>Mis posts</h1>
             </Jumbotron>
             { fetching && <Placeholder />}
+            { !fetching && posts.length === 0 && <NoPost noPostText="No tienes posts disponibles" />}
             <div>
                 {posts.map(post => <Post key={post.postId} post={post} renderControls={true}></Post>)}
             </div>

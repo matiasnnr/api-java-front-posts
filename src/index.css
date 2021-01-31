@@ -1,0 +1,17 @@
+.empty__component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.empty__component object {
+    width: 200px;
+}
+
+.empty__component-content {
+    color: #ccc;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
