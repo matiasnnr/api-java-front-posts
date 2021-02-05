@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { exposures } from '../../helpers/exposures';
 
-export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", postContent = "", postExposureId = exposures.PUBLIC, postExpirationTime = 1, textButton = "Crear post" }) {
+export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", postContent = "", postExposureId = exposures.PUBLIC, postExpirationTime = 60, textButton = "Crear post" }) {
 
     const [title, setTitle] = useState(postTitle);
     const [content, setContent] = useState(postContent);
@@ -40,12 +40,13 @@ export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", 
                             value={expirationTime}
                             onChange={e => setExpirationTime(e.target.value)}
                         >
-                            <option value="1">1 mes</option>
-                            <option value="2">2 meses</option>
-                            <option value="3">3 meses</option>
-                            <option value="6">6 meses</option>
-                            <option value="12">1 año</option>
-                            <option value="24">2 años</option>
+                            <option value="30">30 minutos</option>
+                            <option value="60">1 hora</option>
+                            <option value="120">2 horas</option>
+                            <option value="360">6 horas</option>
+                            <option value="720">12 horas</option>
+                            <option value="1440">1 dia</option>
+                            <option value="0">Nunca</option>
                         </Form.Control>
                         <Form.Control.Feedback type="invalid">
                             {errors.expirationTime}
