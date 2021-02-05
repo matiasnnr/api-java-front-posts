@@ -45,7 +45,7 @@ export default function NewPostForm({ errors, onSubmitCallback, postTitle = "", 
                             <option value="120">2 horas</option>
                             <option value="360">6 horas</option>
                             <option value="720">12 horas</option>
-                            <option value="1440">1 dia</option>
+                            <option value="1440">1 día</option>
                             <option value="0">Nunca</option>
                         </Form.Control>
                         <Form.Control.Feedback type="invalid">
