@@ -12,7 +12,7 @@ export default function Navigation() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Navbar.Brand as={NavLink} to="/">
-                React Java Posts
+                Sistema de Posts
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="main-menu"></Navbar.Toggle>
             <Navbar.Collapse id="main-menu">

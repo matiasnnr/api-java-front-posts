@@ -1,5 +1,6 @@
 // const API_URL = "http://localhost:8080";
-const API_URL = "http://54.153.67.191:8080"; // AWS
+// const API_URL = "http://54.153.67.191:8080"; // AWS
+const API_URL = "https://posts-system.herokuapp.com"; // HEROKU
 
 export const LOGIN_ENDPOINT = `${API_URL}/users/login`;
 export const REGISTER_ENDPOINT = `${API_URL}/users`;
